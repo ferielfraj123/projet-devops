@@ -6,12 +6,7 @@ pipeline {
         }
     stages {
 
-        stage('login') {
-            steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u bahachalbia --password-stdin '
-
-            }
-        }
+        
 
         stage('Docker Build') {
             steps {
@@ -22,6 +17,13 @@ pipeline {
                 sh 'docker build -t bahachalbia/turbine /microservice-demo/microservice-demo-turbine-server/Dockerfile'
                 sh 'docker build -t bahachalbia/zuul /microservice-demo/microservice-demo-zuul-server/Dockerfile'
                  }
+        }
+        
+        stage('login') {
+            steps {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u bahachalbia --password-stdin '
+
+            }
         }
         stage('push') {
             steps {
