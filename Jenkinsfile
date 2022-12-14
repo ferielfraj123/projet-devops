@@ -10,12 +10,12 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t bahachalbia/catalog /microservice-demo/microservice-demo-catalog/Dockerfile'
-                sh 'docker build -t bahachalbia/customer /microservice-demo/microservice-demo-customer/Dockerfile'
-                sh 'docker build -t bahachalbia/eureka /microservice-demo/microservice-demo-eureka-server/Dockerfile'
-                sh 'docker build -t bahachalbia/order /microservice-demo/microservice-demo-order/Dockerfile'
-                sh 'docker build -t bahachalbia/turbine /microservice-demo/microservice-demo-turbine-server/Dockerfile'
-                sh 'docker build -t bahachalbia/zuul /microservice-demo/microservice-demo-zuul-server/Dockerfile'
+                sh 'docker build -t bahachalbia/catalog -f /microservice-demo/microservice-demo-catalog/Dockerfile'
+                sh 'docker build -t bahachalbia/customer -f /microservice-demo/microservice-demo-customer/Dockerfile'
+                sh 'docker build -t bahachalbia/eureka -f /microservice-demo/microservice-demo-eureka-server/Dockerfile'
+                sh 'docker build -t bahachalbia/order -f  /microservice-demo/microservice-demo-order/Dockerfile'
+                sh 'docker build -t bahachalbia/turbine -f /microservice-demo/microservice-demo-turbine-server/Dockerfile'
+                sh 'docker build -t bahachalbia/zuul -f /microservice-demo/microservice-demo-zuul-server/Dockerfile'
                  }
         }
         
