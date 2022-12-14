@@ -1,32 +1,36 @@
 version: '3'
 services:
   eureka:
-    build: ../microservice-demo/microservice-demo-eureka-server
+    image: eureka
+    container_name: eureka
     ports:
-      - "8761:8761"
+      - 8761:8761
   customer:
-    build: ../microservice-demo/microservice-demo-customer
-    links:
+    image: customer
+    container_name: customer
+    depends_on:
      - eureka
   catalog:
-    build: ../microservice-demo/microservice-demo-catalog
-    links:
+    image: catalog
+    container_name: catalog
+    depends_on:
      - eureka
   order:
-    build: ../microservice-demo/microservice-demo-order
-    links:
+    image: order
+    container_name: order
+    depends_on:
      - eureka
   zuul:
-    build: ../microservice-demo/microservice-demo-zuul-server
-    links:
+    image: zuul
+    container_name: zuul
+    depends_on:
      - eureka
     ports:
       - "8080:8080"
   turbine:
-    build: ../microservice-demo/microservice-demo-turbine-server
-    links:
+    image: turbine
+    container_name: turbine
+    depends_on:
      - eureka
     ports:
       - "8989:8989"
-
-
