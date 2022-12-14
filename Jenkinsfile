@@ -10,7 +10,7 @@ pipeline {
             steps {
                 sh 'echo hello world'
                 sh 'ls -lah'
-                sh 'pwd'
+                
             }
         }
 
@@ -18,12 +18,12 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t bahachalbia/catalog:latest  /root/microservice/microservice-demo/microservice-demo-catalog/'
-                sh 'docker build -t bahachalbia/customer:latest  /root/microservice/microservice-demo/microservice-demo-customer/'
-                sh 'docker build -t bahachalbia/eureka:latest  /root/microservice/microservice-demo/microservice-demo-eureka-server/'
-                sh 'docker build -t bahachalbia/order:latest  /root/microservice/microservice-demo/microservice-demo-order/'
-                sh 'docker build -t bahachalbia/turbine:latest  /root/microservice/microservice-demo/microservice-demo-turbine-server/'
-                sh 'docker build -t bahachalbia/zuul:latest  /root/microservice/microservice-demo/microservice-demo-zuul-server/'
+                sh 'docker build -t bahachalbia/catalog:latest microservice-demo/microservice-demo-catalog/'
+                sh 'docker build -t bahachalbia/customer:latest microservice-demo/microservice-demo-customer/'
+                sh 'docker build -t bahachalbia/eureka:latest microservice-demo/microservice-demo-eureka-server/'
+                sh 'docker build -t bahachalbia/order:latest microservice-demo/microservice-demo-order/'
+                sh 'docker build -t bahachalbia/turbine:latest microservice-demo/microservice-demo-turbine-server/'
+                sh 'docker build -t bahachalbia/zuul:latest microservice-demo/microservice-demo-zuul-server/'
                  }
         }
           stage('login') {
