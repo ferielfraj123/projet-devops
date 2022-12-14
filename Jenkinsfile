@@ -10,17 +10,11 @@ pipeline {
             steps {
                 sh 'echo hello world'
                 sh 'ls -lah'
-                ls -lah
-
+                
             }
         }
 
-        stage('ECHO') {
-            steps {
-                echo "hello world"
-
-            }
-        }
+      
 
         stage('Docker Build') {
             steps {
