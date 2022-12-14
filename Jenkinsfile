@@ -6,6 +6,22 @@ pipeline {
         }
     stages {
 
+        stage('ECHO') {
+            steps {
+                sh 'echo hello world'
+                sh 'ls -lah'
+                ls -lah
+
+            }
+        }
+
+        stage('ECHO') {
+            steps {
+                echo "hello world"
+
+            }
+        }
+
         stage('Docker Build') {
             steps {
                 sh 'docker build -t bahachalbia/catalog:latest  /root/microservice/microservice-demo/microservice-demo-catalog/'
