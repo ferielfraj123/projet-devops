@@ -1,0 +1,36 @@
+version: '3'
+services:
+  eureka:
+    image: eureka
+    container_name: eureka
+    ports:
+      - 8761:8761
+  customer:
+    image: customer
+    container_name: customer
+    depends_on:
+     - eureka
+  catalog:
+    image: catalog
+    container_name: catalog
+    depends_on:
+     - eureka
+  order:
+    image: order
+    container_name: order
+    depends_on:
+     - eureka
+  zuul:
+    image: zuul
+    container_name: zuul
+    depends_on:
+     - eureka
+    ports:
+      - "8080:8080"
+  turbine:
+    image: turbine
+    container_name: turbine
+    depends_on:
+     - eureka
+    ports:
+      - "8989:8989"
