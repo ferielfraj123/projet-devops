@@ -1,0 +1,123 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice-demo-catalog
+spec:
+  selector:
+    matchLabels:
+      app: microservice-demo-catalog
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: microservice-demo-catalog
+    spec:
+      containers:
+        - name: microservice-demo-catalog
+          image: bahachalbia/catalog:latest
+          env:
+          - name: SERVICE_A_URL
+            value: "http://microservice-demo-eureka-server.default.svc.cluster.local"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice-demo-customer
+spec:
+  selector:
+    matchLabels:
+      app: microservice-demo-customer
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: microservice-demo-customer
+    spec:
+      containers:
+        - name: microservice-demo-customer
+          image: bahachalbia/customer:latest
+          env:
+          - name: SERVICE_A_URL
+            value: "http://microservice-demo-eureka-server.default.svc.cluster.local"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice-demo-order
+spec:
+  selector:
+    matchLabels:
+      app: microservice-demo-order
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: microservice-demo-order
+    spec:
+      containers:
+        - name: microservice-demo-order
+          image: bahachalbia/order:latest
+          env:
+          - name: SERVICE_A_URL
+            value: "http://microservice-demo-eureka-server.default.svc.cluster.local"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice-demo-eureka-server
+spec:
+  selector:
+    matchLabels:
+      app: microservice-demo-eureka-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: microservice-demo-eureka-server
+    spec:
+      containers:
+        - name: microservice-demo-eureka-server
+          image: bahachalbia/eureka:latest
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice-demo-turbine-server
+spec:
+  selector:
+    matchLabels:
+      app: microservice-demo-turbine-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: microservice-demo-turbine-server
+    spec:
+      containers:
+        - name: microservice-demo-turbine-server
+          image: bahachalbia/turbine:latest
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice-demo-zuul-server
+spec:
+  selector:
+    matchLabels:
+      app: microservice-demo-zuul-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: microservice-demo-zuul-server
+    spec:
+      containers:
+        - name: microservice-demo-zuul-server
+          image: bahachalbia/zuul:latest
