@@ -51,7 +51,7 @@ pipeline {
         stage('Deployment') {
             steps {
                 withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
-                    sh'kubectl apply -f manifest/nginx.yaml'
+                    sh'kubectl apply -f manifest/.'
             }
             }
         }
