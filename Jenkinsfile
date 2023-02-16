@@ -18,17 +18,20 @@ pipeline {
                 
             }
         }
-
+        
     stage('SonarQube Analysis') {
-            environment {
-                scannerHome = tool 'SonarQube Scanner'
-            }
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh "${scannerHome}/bin/sonar-scanner"
-                }
+    environment {
+        scannerHome = tool 'SonarQube Scanner'
+    }
+    steps {
+        withCredentials([usernamePassword(credentialsId: 'sonarqube-credentials', usernameVariable: 'SONAR_USER', passwordVariable: 'SONAR_PASSWORD')]) {
+            withSonarQubeEnv('SonarQube') {
+                sh "${scannerHome}/bin/sonar-scanner -Dsonar.login=${SONAR_USER} -Dsonar.password=${SONAR_PASSWORD}"
             }
         }
+    }
+}
+
 
         stage('Docker Build') {
             steps {
