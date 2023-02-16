@@ -5,7 +5,12 @@ pipeline {
         DOCKERHUB_CREDENTIALS = credentials('bootstrap-dockerhub')
         }
     stages {
-
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        
         stage('ECHO') {
             steps {
                 sh 'echo hello world'
@@ -15,15 +20,15 @@ pipeline {
         }
 
     stage('SonarQube Analysis') {
-        
-        steps {
-                sh 'cd microservice-demo'
-                def mvn = tool 'Default Maven'
-                withSonarQubeEnv() {
-                sh '${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=maven'
+            environment {
+                scannerHome = tool 'SonarQube Scanner'
+            }
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
         }
-    }
-  }
 
         stage('Docker Build') {
             steps {
