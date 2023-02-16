@@ -17,10 +17,10 @@ pipeline {
     stage('SonarQube Analysis') {
         
         steps {
-                sh' cd microservice-demo'
-                def mvn = tool 'Default Maven';
+                sh 'cd microservice-demo'
+                def mvn = tool 'Default Maven'
                 withSonarQubeEnv() {
-                sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=maven"
+                sh '${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=maven'
         }
     }
   }
