@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('bootstrap-dockerhub')
+        def mvnHome = tool name: 'maven-3', type: 'maven'
         }
     stages {
         stage('Checkout') {
@@ -20,7 +21,7 @@ pipeline {
         }
         
      stage('SonarQube Analysis') {
-            def mvnHome = tool name: 'maven-3', type: 'maven'
+            
             steps {
                 withSonarQubeEnv('SonarQube') {
                     sh "${mvnHome}/bin/mvn sonar:sonar"
