@@ -30,7 +30,6 @@ pipeline {
   -Dsonar.host.url=http://watchzabbix.tk \
   -Dsonar.login=jenkins
   -Dsonar.sources=microservice-demo/"
-                    
             }
         }
     }
