@@ -1,3 +1,4 @@
+Your project contains .java files, please provide compiled classes with sonar.java.binaries property, or exclude them from the analysis with sonar.exclusions property.
 mvn clean verify sonar:sonar \
   -Dsonar.projectKey=jenkins \
   -Dsonar.host.url=http://watchzabbix.tk \
