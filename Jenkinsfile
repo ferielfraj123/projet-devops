@@ -25,7 +25,11 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh "${scannerHome}/bin/sonar-scanner"
+                    sh "mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=jenkins \
+  -Dsonar.host.url=http://watchzabbix.tk \
+  -Dsonar.login=jenkins"
+                    
             }
         }
     }
