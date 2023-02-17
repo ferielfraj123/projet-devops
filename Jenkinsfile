@@ -25,12 +25,9 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('SonarQube') {
-sh "./microservice-demo/mvn clean verify sonar:sonar \
-    -Dsonar.projectKey=jenkins \
-    -Dsonar.host.url=http://watchzabbix.tk \
-    -Dsonar.login=jenkins \"
+sh "./mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar"
             }
-        }
+       
     }
 
 
