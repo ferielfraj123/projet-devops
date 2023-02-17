@@ -1,3 +1,8 @@
+mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=jenkins \
+  -Dsonar.host.url=http://watchzabbix.tk \
+  -Dsonar.login=jenkins
+
 Microservice Sample
 ==============
 
