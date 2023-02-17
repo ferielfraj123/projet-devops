@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                git'https://github.com/Bahachalbia/springboot/tree/main/microservice-demo'
             }
         }
         
@@ -20,12 +20,10 @@ pipeline {
         }
         
      stage('SonarQube Analysis') {
-            environment {
-                scannerHome = tool 'SonarQube Scanner'
-            }
+            def mvnHome = tool name: 'maven-3', type: 'maven'
             steps {
                 withSonarQubeEnv('SonarQube') {
-sh "./mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin"
+                    sh "${mvnHome}/bin/mvn sonar:sonar"
             }
        
     }
