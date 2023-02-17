@@ -25,10 +25,11 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh "mvn clean verify sonar:sonar \
-  -Dsonar.projectKey=jenkins \
-  -Dsonar.host.url=http://watchzabbix.tk \
-  -Dsonar.login=jenkins"
+sh "mvn clean verify sonar:sonar \
+    -Dsonar.projectKey=jenkins \
+    -Dsonar.host.url=http://watchzabbix.tk \
+    -Dsonar.login=jenkins \
+    -Dsonar.sources=src/main/java"
             }
         }
     }
