@@ -3,7 +3,6 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('bootstrap-dockerhub')
-        def mvnHome = tool name: 'maven-3', type: 'maven'
         }
     stages {
         stage('Checkout') {
@@ -24,7 +23,7 @@ pipeline {
             
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh "${mvnHome}/bin/mvn sonar:sonar"
+                    sh "mvn clean verify -f microservice-demo/ sonar:sonar"
             }
        
     }
