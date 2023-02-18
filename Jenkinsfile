@@ -5,11 +5,7 @@ pipeline {
         DOCKERHUB_CREDENTIALS = credentials('bootstrap-dockerhub')
         }
     stages {
-        stage('Checkout') {
-            steps {
-                git'https://github.com/Bahachalbia/springboot/tree/main/microservice-demo'
-            }
-        }
+        
         
         stage('ECHO') {
             steps {
